@@ -1,0 +1,5 @@
+desayuno
+almuerzo
+cena
+media mañana
+media tarde

@@ -1,0 +1,44 @@
+version: "3.1"
+
+rules:
+
+# --- REGLAS PARA RECOMENDACIÓN DE PLATOS ---
+
+- rule: Usuario acepta recomendación de comida
+  steps:
+    - action: utter_ofrecer_platos
+    - intent: afirmar
+    - action: utter_pedir_tiempo_comida
+
+- rule: Usuario rechaza recomendación
+  steps:
+    - action: utter_ofrecer_platos
+    - intent: negar
+    - action: utter_no_platos
+
+- rule: Recomendar plato después de elegir tiempo
+  steps:
+    - action: utter_pedir_tiempo_comida
+    - intent: decir_tiempo_comida
+    - action: action_recomendar_plato
+
+
+# --- REGLA GENERAL DE DESPEDIDA ---
+
+- rule: Despedida en cualquier momento
+  steps:
+    - intent: despedida
+    - action: utter_despedida
+
+# rules.yml (añadir)
+- rule: Manejar confirmación de plato después de recomendar
+  steps:
+    - action: action_recomendar_plato
+    - intent: afirmar
+    - action: action_manejar_confirmacion_plato
+
+- rule: Manejar rechazo de plato después de recomendar
+  steps:
+    - action: action_recomendar_plato
+    - intent: negar
+    - action: action_manejar_confirmacion_plato

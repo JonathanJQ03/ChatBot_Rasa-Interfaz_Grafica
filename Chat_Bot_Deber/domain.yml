@@ -1,0 +1,105 @@
+version: "3.1"
+
+intents:
+  - saludo
+  - decir_nombre
+  - decir_edad
+  - decir_peso
+  - decir_altura
+  - afirmar
+  - negar
+  - decir_tiempo_comida
+  - despedida
+
+entities:
+  - nombre
+  - edad
+  - peso
+  - altura
+  - tiempo_comida
+
+slots:
+  nombre:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: nombre
+
+  edad:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: edad
+
+  peso:
+    type: text
+    mappings:
+      - type: from_text
+
+  altura:
+    type: text
+    mappings:
+      - type: from_text
+
+  imc:
+    type: text
+    mappings:
+      - type: custom
+
+  interpretacion:
+    type: text
+    mappings:
+      - type: custom
+
+  tiempo_comida:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: tiempo_comida
+
+  plato_recomendado:
+    type: text
+    mappings:
+      - type: custom
+
+  plato_confirmado:
+    type: bool
+    mappings:
+      - type: custom
+
+responses:
+
+  utter_saludo:
+    - text: "¡Hola! Soy Vita Kids, tu asistente saludable. ¿Cómo te llamas?"
+
+  utter_decir_nombre:
+    - text: "¡Es un gusto conocerte, {nombre}!"
+
+  utter_iniciar_imc:
+    - text: "Vamos a calcular tu IMC. ¿Cuántos años tienes?"
+
+  utter_pedir_peso:
+    - text: "Perfecto, {nombre}. ¿Cuántos kilos pesas?"
+
+  utter_pedir_altura:
+    - text: "Muy bien. ¿Cuál es tu altura? Puedes decirla en metros o centímetros."
+
+  utter_resultado_imc:
+    - text: "{nombre}, tu IMC es de {imc}. {interpretacion}"
+
+  utter_ofrecer_platos:
+    - text: "Listo {nombre}, ¿quieres recomendaciones de platos nutritivos?"
+
+  utter_pedir_tiempo_comida:
+    - text: "¿Para qué tiempo de comida quieres la recomendación? (desayuno, almuerzo, cena, media mañana o media tarde)"
+
+  utter_no_platos:
+    - text: "¡Está bien! Si cambias de opinión, avísame."
+
+  utter_despedida:
+    - text: "¡Hasta luego, {nombre}! Cuídate mucho."
+
+actions:
+  - action_calcular_imc
+  - action_recomendar_plato
+  - action_manejar_confirmacion_plato

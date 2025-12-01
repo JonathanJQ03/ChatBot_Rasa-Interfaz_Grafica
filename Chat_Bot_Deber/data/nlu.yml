@@ -1,0 +1,137 @@
+version: "3.1"
+
+nlu:
+  - intent: saludo
+    examples: |
+      - Hola
+      - Buenas
+      - Buen día
+      - Hola bot
+      - Hola asistente
+
+  - intent: decir_nombre
+    examples: |
+      - Me llamo [Juan](nombre)
+      - Soy [Ana](nombre)
+      - Mi nombre es [Carlos](nombre)
+      - Hola, mi nombre es [Lucía](nombre)
+      - [Sofia](nombre) es mi nombre
+      - Quiero que me llames [Miguel](nombre)
+      - Puedes llamarme [Valentina](nombre)
+      - [Tania](nombre)
+      - [Javier](nombre)
+
+  - intent: decir_peso
+    examples: |
+      - Peso [20](peso) kilos
+      - Mi peso es [18](peso) kg
+      - Yo peso [25](peso) kilos
+      - Peso [58](peso) kilos
+      - [58](peso) kg
+      - [58](peso)
+      - Peso [45.5](peso)
+      - [62](peso) kilogramos
+      - Tengo [55](peso) kg
+      - [48](peso) kilos
+      - Mi peso es de [52](peso) kg
+
+  - intent: decir_altura
+    examples: |
+      - Mido [1.20](altura) metros
+      - Mi altura es [1.35](altura)
+      - [150](altura) cm
+      - Mido [1.64](altura) metros
+      - [1.64](altura) m
+      - [164](altura) centímetros
+      - [1.55](altura)
+      - Mido [1.45](altura)
+      - [140](altura) cm
+      - Tengo [1.50](altura) de altura
+      - [155](altura)
+
+  - intent: decir_edad
+    examples: |
+      - Tengo [22](edad) años
+      - Tengo [10](edad) años
+      - Mi edad es [9](edad)
+      - Yo tengo [12](edad)
+      - Tengo 7 años
+      - Tengo apenas 8 años
+      - Tengo 6 añitos
+      - Tengo dieciséis años
+      - Tengo 18 años
+      - Tengo nueve años
+
+  - intent: afirmar
+    examples: |
+      - sí
+      - si
+      - claro
+      - por supuesto
+      - dale
+      - ok
+      - está bien
+      - sip
+      - see
+      - obvio
+      - correcto
+
+  - intent: negar
+    examples: |
+      - no
+      - nop
+      - no gracias
+      - mejor no
+      - ahora no
+      - tal vez después
+      - paso
+
+  - intent: decir_tiempo_comida
+    examples: |
+      - [desayuno](tiempo_comida)
+      - [almuerzo](tiempo_comida)
+      - [cena](tiempo_comida)
+      - [media mañana](tiempo_comida)
+      - [media tarde](tiempo_comida)
+      - Quiero [desayuno](tiempo_comida)
+      - Para el [almuerzo](tiempo_comida)
+      - Es para [cena](tiempo_comida)
+      - Para [media mañana](tiempo_comida)
+      - Para [media tarde](tiempo_comida)
+      - [desayuno](tiempo_comida) por favor
+      - Dame [almuerzo](tiempo_comida)
+      - Recomiéndame [cena](tiempo_comida)
+
+  - intent: despedida
+    examples: |
+      - Adios
+      - Chao
+      - Hasta luego
+
+  - lookup: nombre
+    examples: |
+      data/datasets/nombres.txt
+
+  - lookup: tiempo_comida
+    examples: |
+      data/datasets/tiempo_comida.txt
+
+
+  - regex: edad
+    examples: |
+      - \b\d{1,3}\b
+      - \b\d{1,3}\s?(años?|año)\b
+
+  - regex: peso
+    examples: |
+      - \b\d+\.?\d*\b
+      - \b\d+\.?\d*\s?(kg|kilos?|kilogramos?)\b
+
+  - regex: altura
+    examples: |
+      - \b\d+\.?\d*\b
+      - \b\d+\.?\d*\s?(m|metros?|cm|centímetros?)\b
+
+  - regex: tiempo_comida
+    examples: |
+      - \b(desayuno|almuerzo|cena|media mañana|media tarde)\b

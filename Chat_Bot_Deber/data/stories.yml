@@ -1,0 +1,35 @@
+version: "3.1"
+
+stories:
+
+- story: flujo_completo_imc
+  steps:
+    - intent: saludo
+    - action: utter_saludo
+    - intent: decir_nombre
+    - action: utter_decir_nombre
+    - action: utter_iniciar_imc
+    - intent: decir_edad
+    - action: utter_pedir_peso
+    - intent: decir_peso
+    - action: utter_pedir_altura
+    - intent: decir_altura
+    - action: action_calcular_imc
+    - action: utter_resultado_imc
+    - action: utter_ofrecer_platos
+
+- story: flujo_imc_acepta_platos
+  steps:
+    - action: utter_resultado_imc
+    - action: utter_ofrecer_platos
+    - intent: afirmar
+    - action: utter_pedir_tiempo_comida
+    - intent: decir_tiempo_comida
+    - action: action_recomendar_plato
+
+- story: flujo_imc_rechaza_platos
+  steps:
+    - action: utter_resultado_imc
+    - action: utter_ofrecer_platos
+    - intent: negar
+    - action: utter_no_platos
